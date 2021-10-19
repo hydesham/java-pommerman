@@ -1,5 +1,7 @@
 import core.Game;
 import players.*;
+import players.groupAF.MCTSParamsAF;
+import players.groupAF.MCTSPlayerAF;
 import utils.Types;
 import players.rhea.utils.Constants;
 import players.mcts.MCTSPlayer;
@@ -37,15 +39,18 @@ public class Test {
         RHEAParams rheaParams = new RHEAParams();
         rheaParams.heurisic_type = Constants.CUSTOM_HEURISTIC;
 
-        players.add(new MCTSPlayer(seed, playerID++, mctsParams));
+        // players.add(new MCTSPlayer(seed, playerID++, mctsParams));
         //players.add(new MCTSPlayer(seed, playerID++, mctsParams));
 
 //        players.add(new SimplePlayer(seed, playerID++));
         players.add(new RHEAPlayer(seed, playerID++, rheaParams));
 //        players.add(new SimplePlayer(seed, playerID++));
         players.add(new MCTSPlayer(seed, playerID++, new MCTSParams()));
-        players.add(new RHEAPlayer(seed, playerID++, rheaParams));
+        // players.add(new RHEAPlayer(seed, playerID++, rheaParams));
 //        players.add(new HumanPlayer(ki1, playerID++));
+        players.add(new MCTSPlayerAF(seed, playerID++, new MCTSParamsAF()));
+
+        players.add(new OSLAPlayer(seed, playerID++));
 
         // Make sure we have exactly NUM_PLAYERS players
         assert players.size() == Types.NUM_PLAYERS : "There should be " + Types.NUM_PLAYERS +
